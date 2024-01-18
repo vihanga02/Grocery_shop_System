@@ -7,12 +7,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class WestministerShoppingManager implements ShopingManager{
-    static List<Product> productList1 = new ArrayList<>();
+    static List<Product> productList = new ArrayList<>();
 
     Scanner scanner = new Scanner(System.in);
 
-    public  WestministerShoppingManager(List<Product> productList ){
-        this.productList1 = productList;
+    public  WestministerShoppingManager(){
     }
 
     @Override
@@ -23,6 +22,7 @@ public class WestministerShoppingManager implements ShopingManager{
                 "2.Delete a product.\n" +
                 "3.Print the list of product.\n" +
                 "4.Save a file.\n" +
+                "5.Exit.\n" +
                 "Enter a option: ");
 
         int choice = scanner.nextInt();
@@ -45,7 +45,7 @@ public class WestministerShoppingManager implements ShopingManager{
 
     @Override
     public void addAProduct() {
-        if (productList1.size() < 50) {
+        if (productList.size() < 50) {
             System.out.println("Enter the type of the product: ");
             String type = scanner.next();
 
@@ -55,7 +55,7 @@ public class WestministerShoppingManager implements ShopingManager{
             System.out.println("Enter item count: ");
             int itemCount = scanner.nextInt();
 
-            for (Product product: productList1){
+            for (Product product: productList){
                 if ((product.getId()).equals(id)){
                     product.setNumberOfProducts(itemCount);
                     break;
@@ -74,7 +74,7 @@ public class WestministerShoppingManager implements ShopingManager{
                         System.out.println("Enter the brand name: ");
                         String brand = scanner.next();
 
-                        productList1.add(new Electronics(id, name, itemCount, price, brand, warrant));
+                        productList.add(new Electronics(id, name, itemCount, price, brand, warrant));
                         System.out.println("Successfully added.");
                     } else if (type.equals("Clothing")) {
                         System.out.println("Enter the color: ");
@@ -83,7 +83,7 @@ public class WestministerShoppingManager implements ShopingManager{
                         System.out.println("Enter the size: ");
                         int size = scanner.nextInt();
 
-                        productList1.add(new Clothing(id, name, itemCount, price, color, size));
+                        productList.add(new Clothing(id, name, itemCount, price, color, size));
                         System.out.println("Successfully added.");
                     } else {
                         System.out.println("Wrong product.");
@@ -99,15 +99,15 @@ public class WestministerShoppingManager implements ShopingManager{
 
     @Override
     public void deleteProduct() {
-        if (productList1.size() > 0) {
+        if (productList.size() > 0) {
             System.out.println("Enter the ID of the deleting element");
             String idToDelete = scanner.next();
 
             int flag = 0;
 
-            for (Product product : productList1) {
+            for (Product product : productList) {
                 if ((product.getId().equals(idToDelete))) {
-                    productList1.remove(product);
+                    productList.remove(product);
                     product.setNumberOfProducts(-1);
                     flag = 1;
                     System.out.println("Item Deleted");
@@ -130,7 +130,7 @@ public class WestministerShoppingManager implements ShopingManager{
         try{
             FileOutputStream data = new FileOutputStream("Data1.ser");
             ObjectOutputStream obj = new ObjectOutputStream(data);
-            obj.writeObject(productList1);
+            obj.writeObject(productList);
             obj.close();
 
         } catch (IOException e) {
@@ -143,7 +143,7 @@ public class WestministerShoppingManager implements ShopingManager{
     @Override
     public void printTheProductList() {
         List<String> idNumbers = new ArrayList<>();
-        for (Product product: productList1){
+        for (Product product: productList){
             idNumbers.add(product.getId());
         }
 
@@ -152,7 +152,7 @@ public class WestministerShoppingManager implements ShopingManager{
         System.out.println("#---------------PRODUCT LIST---------------#");
 
         for (String id: idNumbers){
-            for (Product product: productList1){
+            for (Product product: productList){
                 if (product.getId() == null){
                     System.out.println("nullllllll");
                     break;
@@ -177,7 +177,22 @@ public class WestministerShoppingManager implements ShopingManager{
     }
 
     public  List<Product> getList(){
-        return productList1;
+        return productList;
+    }
+
+    @Override
+    public List<Product> loadFile() {
+//        productList.add(new Electronics("abc", "MacbookAir", 2, 102, "Apple", 12));
+//        productList.add(new Clothing("xyz", "MacbookAir", 1, 102, "red", 1));
+
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("Data1.ser"))){
+            List<Product> pr = (List<Product>) in.readObject();
+            productList = pr;
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("errorrrrrrrrrrrr");
+            e.printStackTrace();
+        }
+        return productList;
     }
 
     public boolean getState(){

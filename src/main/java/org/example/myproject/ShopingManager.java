@@ -10,5 +10,6 @@ public interface ShopingManager {
     void saveInAFile();
     void printTheProductList();
     List<Product> getList();
+    List<Product> loadFile();
     boolean getState();
 }

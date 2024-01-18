@@ -2,8 +2,13 @@ package org.example.myproject;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class Scene1Controller {
     private String userName;
@@ -16,7 +21,7 @@ public class Scene1Controller {
     private TextField userNameField;
     @FXML
     private TextField passwordField;
-    User user = new User("pakaya", "123");
+    User user = new User("1", "1");
 
 
     public void login(ActionEvent event) throws Exception {
@@ -24,7 +29,10 @@ public class Scene1Controller {
         password = passwordField.getText();
 
         if (userName.equals(user.getUserName()) && password.equals(user.getPassword())){
-            System.out.println("ok");
+            Parent root = FXMLLoader.load(getClass().getResource("Gui1.fxml"));
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
         }
         else{
             userNameField.clear();
