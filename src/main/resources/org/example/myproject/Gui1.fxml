@@ -11,7 +11,7 @@
 
 <AnchorPane prefHeight="900.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.myproject.Scene2Controller">
    <children>
-      <Button layoutX="673.0" layoutY="23.0" mnemonicParsing="false" text="Shopping Cart">
+      <Button fx:id="shoppingCartButton" layoutX="673.0" layoutY="23.0" mnemonicParsing="false" onAction="#switchingToScene3" text="Shopping Cart">
          <font>
             <Font size="14.0" />
          </font>
@@ -27,13 +27,13 @@
          </font>
       </Label>
       <ChoiceBox fx:id="myChoiceBox" layoutX="307.0" layoutY="25.0" prefHeight="18.0" prefWidth="169.0" />
-      <TableView layoutX="26.0" layoutY="117.0" prefHeight="364.0" prefWidth="750.0">
+      <TableView fx:id="tableView" layoutX="26.0" layoutY="117.0" prefHeight="364.0" prefWidth="750.0">
         <columns>
-          <TableColumn prefWidth="130.0" text="Product ID" />
-          <TableColumn prefWidth="130.0" text="Name" />
-            <TableColumn prefWidth="130.0" text="Category" />
-            <TableColumn prefWidth="130.0" text="Price" />
-            <TableColumn prefWidth="229.0" text="Info" />
+          <TableColumn fx:id="id" prefWidth="130.0" text="Product ID" />
+          <TableColumn fx:id="name" prefWidth="130.0" text="Name" />
+            <TableColumn fx:id="cat" prefWidth="130.0" text="Category" />
+            <TableColumn fx:id="price" prefWidth="130.0" text="Price" />
+            <TableColumn fx:id="info" prefWidth="229.0" text="Info" />
         </columns>
       </TableView>
       <Line endX="699.0" layoutX="101.0" layoutY="531.0" startX="-100.0" strokeWidth="2.0" />
