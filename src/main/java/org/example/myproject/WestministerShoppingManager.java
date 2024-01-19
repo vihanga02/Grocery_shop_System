@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class WestministerShoppingManager implements ShopingManager{
-    static List<Product> productList = new ArrayList<>();
+    List<Product> productList = loadFile();
 
     Scanner scanner = new Scanner(System.in);
 
@@ -46,8 +46,18 @@ public class WestministerShoppingManager implements ShopingManager{
     @Override
     public void addAProduct() {
         if (productList.size() < 50) {
-            System.out.println("Enter the type of the product: ");
-            String type = scanner.next();
+            System.out.println("Enter the type of the product: 1.Electronics        2.Clothing");
+            String type = "none";
+            int choice = scanner.nextInt();
+            if (choice == 1){
+                type = "Electronics";
+            } else if (choice == 2) {
+                type = "Clothing";
+            }
+            else{
+                type = type;
+                addAProduct();
+            }
 
             System.out.println("Enter the product ID: ");
             String id = scanner.next();
@@ -55,40 +65,44 @@ public class WestministerShoppingManager implements ShopingManager{
             System.out.println("Enter item count: ");
             int itemCount = scanner.nextInt();
 
-            for (Product product: productList){
-                if ((product.getId()).equals(id)){
+            boolean in = false;
+
+
+            for (Product product: productList) {
+                if ((product.getId()).equals(id)) {
                     product.setNumberOfProducts(itemCount);
+                    in = true;
                     break;
                 }
-                else{
-                    System.out.println("Enter the product name: ");
-                    String name = scanner.next();
+            }
+            if (!in) {
+                System.out.println("Enter the product name: ");
+                String name = scanner.next();
 
-                    System.out.println("Enter the price: ");
-                    double price = scanner.nextDouble();
+                System.out.println("Enter the price: ");
+                double price = scanner.nextDouble();
 
-                    if (type.equals("Electronics")) {
-                        System.out.println("Enter the warrenty period: ");
-                        int warrant = scanner.nextInt();
+                if (type.equals("Electronics")) {
+                    System.out.println("Enter the warrenty period: ");
+                    int warrant = scanner.nextInt();
 
-                        System.out.println("Enter the brand name: ");
-                        String brand = scanner.next();
+                    System.out.println("Enter the brand name: ");
+                    String brand = scanner.next();
 
-                        productList.add(new Electronics(id, name, itemCount, price, brand, warrant));
-                        System.out.println("Successfully added.");
-                    } else if (type.equals("Clothing")) {
-                        System.out.println("Enter the color: ");
-                        String color = scanner.next();
+                    productList.add(new Electronics(id, name, itemCount, price, brand, warrant));
+                    System.out.println("Successfully added.");
+                } else if (type.equals("Clothing")) {
+                    System.out.println("Enter the color: ");
+                    String color = scanner.next();
 
-                        System.out.println("Enter the size: ");
-                        int size = scanner.nextInt();
+                    System.out.println("Enter the size: ");
+                    int size = scanner.nextInt();
 
-                        productList.add(new Clothing(id, name, itemCount, price, color, size));
-                        System.out.println("Successfully added.");
-                    } else {
-                        System.out.println("Wrong product.");
-                        addAProduct();
-                    }
+                    productList.add(new Clothing(id, name, itemCount, price, color, size));
+                    System.out.println("Successfully added.");
+                } else {
+                    System.out.println("Wrong product.");
+                    addAProduct();
                 }
             }
         }

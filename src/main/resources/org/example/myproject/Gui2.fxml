@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.myproject.Scene3Controller">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.myproject.Scene3Controller">
    <children>
       <TableView layoutX="28.0" layoutY="31.0" prefHeight="284.0" prefWidth="744.0">
         <columns>
-          <TableColumn prefWidth="376.0" text="Product" />
+          <TableColumn prefWidth="375.0" text="Product" />
           <TableColumn prefWidth="164.0" text="Quantity" />
             <TableColumn prefWidth="203.0" text="Price" />
         </columns>
@@ -36,5 +36,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
+      <Button layoutX="235.0" layoutY="545.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="153.0" text="Select More Items" />
+      <Button layoutX="460.0" layoutY="545.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="66.0" text="Buy" />
    </children>
 </AnchorPane>

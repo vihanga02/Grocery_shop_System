@@ -11,7 +11,7 @@ public class Product implements Serializable {
     public Product(String id, String name, int nOp ,double price){
         this.id = id;
         this.productName = name;
-        this.numberOfProducts++;
+        this.numberOfProducts = nOp;
         this.price = price;
     }
 

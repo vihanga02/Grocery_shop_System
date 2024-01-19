@@ -9,14 +9,14 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="900.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.myproject.Scene2Controller">
+<AnchorPane prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.myproject.Scene2Controller">
    <children>
       <Button fx:id="shoppingCartButton" layoutX="673.0" layoutY="23.0" mnemonicParsing="false" onAction="#switchingToScene3" text="Shopping Cart">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button layoutX="316.0" layoutY="847.0" mnemonicParsing="false" text="Add to Shopping Cart">
+      <Button fx:id="addTocartButton" layoutX="313.0" layoutY="751.0" mnemonicParsing="false" onAction="#addToCart" text="Add to Shopping Cart">
          <font>
             <Font size="14.0" />
          </font>
@@ -27,7 +27,7 @@
          </font>
       </Label>
       <ChoiceBox fx:id="myChoiceBox" layoutX="307.0" layoutY="25.0" prefHeight="18.0" prefWidth="169.0" />
-      <TableView fx:id="tableView" layoutX="26.0" layoutY="117.0" prefHeight="364.0" prefWidth="750.0">
+      <TableView fx:id="tableView" layoutX="26.0" layoutY="117.0" onMouseClicked="#displaySelected" prefHeight="258.0" prefWidth="750.0">
         <columns>
           <TableColumn fx:id="id" prefWidth="130.0" text="Product ID" />
           <TableColumn fx:id="name" prefWidth="130.0" text="Name" />
@@ -36,38 +36,38 @@
             <TableColumn fx:id="info" prefWidth="229.0" text="Info" />
         </columns>
       </TableView>
-      <Line endX="699.0" layoutX="101.0" layoutY="531.0" startX="-100.0" strokeWidth="2.0" />
-      <Label layoutX="119.0" layoutY="548.0" text="Selected Product - Details">
+      <Line endX="699.0" layoutX="101.0" layoutY="418.0" startX="-100.0" strokeWidth="2.0" />
+      <Label layoutX="119.0" layoutY="457.0" text="Selected Product - Details">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="42.0" layoutY="596.0" text="Product ID:">
+      <Label fx:id="idLabel" layoutX="73.0" layoutY="511.0" text="Product ID:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="39.0" layoutY="631.0" text="Category:">
+      <Label fx:id="catLabel" layoutX="82.0" layoutY="550.0" text="Category:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="42.0" layoutY="668.0" text="Name:">
+      <Label fx:id="nameLabel" layoutX="104.0" layoutY="586.0" text="Name:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="42.0" layoutY="706.0" text="Items available:">
+      <Label fx:id="itemCountLabel" layoutX="42.0" layoutY="622.0" text="Items available:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="43.0" layoutY="746.0" text="#1">
+      <Label fx:id="infoLabel" layoutX="114.0" layoutY="660.0" text="Info1:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="38.0" layoutY="788.0" text="#2">
+      <Label fx:id="infoLabel1" layoutX="111.0" layoutY="695.0" text="Info2:">
          <font>
             <Font size="14.0" />
          </font>
