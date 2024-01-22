@@ -1,15 +1,19 @@
 package org.example.myproject;
 
+import javafx.scene.Scene;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class ShoppingCart {
-    private Map<Product ,Integer> productMap;
-    private List<Product> productList;
+    public Map<Product ,Integer> productMap;
+    public List<Product> productList;
+    private static ShoppingCart instance;
+    public Scene scene1, scene2, scene3;
 
-    public ShoppingCart(/*List<Product> productList*/) {
+    public ShoppingCart() {
         this.productMap = new HashMap<>();
         this.productList = new ArrayList<>();
     }
@@ -25,8 +29,19 @@ public class ShoppingCart {
     }
 
     public void remove(Product product){
-        productList.remove(product);
-        productMap.remove(product);
+        if (productMap.get(product) == 0){
+            productList.remove(product);
+            productMap.remove(product);
+        }
+
+
+    }
+
+    public static ShoppingCart getInstance() {
+        if (instance == null) {
+            instance = new ShoppingCart();
+        }
+        return instance;
     }
 
     public double totalCost(){

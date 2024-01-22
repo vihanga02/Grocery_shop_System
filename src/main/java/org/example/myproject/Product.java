@@ -1,5 +1,7 @@
 package org.example.myproject;
 
+import javafx.beans.value.ObservableValue;
+
 import java.io.Serializable;
 
 public class Product implements Serializable {
@@ -50,4 +52,5 @@ public class Product implements Serializable {
     public void setPrice(double price){
         this.price = price;
     }
+
 }

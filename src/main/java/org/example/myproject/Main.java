@@ -14,15 +14,14 @@ import java.util.List;
 
 public class Main extends Application {
     public static void main(String[] args) {
-        ShopingManager manager1 = new WestministerShoppingManager();
-        List<Product> productlist1 = manager1.loadFile();
-        boolean next = true;
-        while (next) {
-            manager1.displayMenu();
-            next = manager1.getState();
-            List<Product> productList1 = manager1.getList();
-            System.out.println(productList1.get(0).getNumberOfProducts());
-        }
+//        ShopingManager manager1 = new WestministerShoppingManager();
+//        List<Product> productlist1 = manager1.loadFile();
+//        boolean next = true;
+//        while (next) {
+//            manager1.displayMenu();
+//            next = manager1.getState();
+//            List<Product> productList1 = manager1.getList();
+//        }
         launch();
     }
 

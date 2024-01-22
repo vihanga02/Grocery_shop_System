@@ -10,7 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class Scene1Controller {
+public class Scene1Controller extends ShoppingCart{
     private String userName;
 
     private String password;
@@ -23,6 +23,10 @@ public class Scene1Controller {
     private TextField passwordField;
     User user = new User("1", "1");
 
+    public  Scene1Controller(){
+
+    }
+
 
     public void login(ActionEvent event) throws Exception {
         userName = userNameField.getText();
@@ -31,7 +35,8 @@ public class Scene1Controller {
         if (userName.equals(user.getUserName()) && password.equals(user.getPassword())){
             Parent root = FXMLLoader.load(getClass().getResource("Gui1.fxml"));
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
             stage.show();
         }
         else{

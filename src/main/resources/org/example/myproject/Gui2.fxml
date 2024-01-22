@@ -9,11 +9,11 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.myproject.Scene3Controller">
    <children>
-      <TableView layoutX="28.0" layoutY="31.0" prefHeight="284.0" prefWidth="744.0">
+      <TableView fx:id="tableView" layoutX="28.0" layoutY="31.0" onSort="#backToShop" prefHeight="284.0" prefWidth="689.0">
         <columns>
-          <TableColumn prefWidth="375.0" text="Product" />
-          <TableColumn prefWidth="164.0" text="Quantity" />
-            <TableColumn prefWidth="203.0" text="Price" />
+          <TableColumn fx:id="productColumn" prefWidth="346.0" text="Product" />
+          <TableColumn fx:id="quantityColumn" prefWidth="138.0" text="Quantity" />
+            <TableColumn fx:id="priceColumn" prefWidth="204.0" text="Price (Rs)" />
         </columns>
       </TableView>
       <Label layoutX="442.0" layoutY="356.0" text="Total">
@@ -36,7 +36,8 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Button layoutX="235.0" layoutY="545.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="153.0" text="Select More Items" />
+      <Button fx:id="backToSlection" layoutX="235.0" layoutY="545.0" mnemonicParsing="false" onAction="#backToShop" prefHeight="24.0" prefWidth="153.0" text="Select More Items" />
       <Button layoutX="460.0" layoutY="545.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="66.0" text="Buy" />
+      <Button layoutX="720.0" layoutY="161.0" mnemonicParsing="false" onAction="#removeASelected" prefHeight="24.0" prefWidth="82.0" rotate="90.0" text="Remove" />
    </children>
 </AnchorPane>

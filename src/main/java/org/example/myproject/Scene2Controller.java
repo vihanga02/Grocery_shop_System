@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class Scene2Controller implements Initializable {
+public class Scene2Controller extends ShoppingCart implements Initializable {
     private String[] categories = {"All", "Electronics", "Clothings"};
 
     @FXML
@@ -28,7 +28,7 @@ public class Scene2Controller implements Initializable {
 
     List<Product> productList;
     WestministerShoppingManager manager;
-    ShoppingCart cart;
+
     List<Product> newProductList = new ArrayList<>();
     @FXML
     Label idLabel;
@@ -61,7 +61,6 @@ public class Scene2Controller implements Initializable {
 
     public Scene2Controller() {
         this.manager = new WestministerShoppingManager();
-        this.cart = new ShoppingCart();
         this.productList = manager.loadFile();
         this.observableProductList = FXCollections.observableArrayList(productList);
     }
@@ -97,11 +96,11 @@ public class Scene2Controller implements Initializable {
                 return new ReadOnlyStringWrapper("Size: " + clothingProduct.getSize() + ", Color: " + clothingProduct.getColor());
             }
         });
-
         tableView.setItems(observableProductList);
     }
     public void getCategory(ActionEvent event){
         String category = myChoiceBox.getValue();
+        newProductList.clear();
         if (category.equals("Electronics")){
             for (Product product: productList){
                 if (product instanceof Electronics){
@@ -153,8 +152,7 @@ public class Scene2Controller implements Initializable {
     }
 
     public void addToCart(ActionEvent event)throws Exception{
+        ShoppingCart cart = ShoppingCart.getInstance();
         cart.add(selectedObject);
-        System.out.println(cart.totalCost());
     }
-
 }

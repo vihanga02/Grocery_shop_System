@@ -67,7 +67,6 @@ public class WestministerShoppingManager implements ShopingManager{
 
             boolean in = false;
 
-
             for (Product product: productList) {
                 if ((product.getId()).equals(id)) {
                     product.setNumberOfProducts(itemCount);
