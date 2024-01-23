@@ -16,7 +16,6 @@ public class WestministerShoppingManager implements ShopingManager{
 
     @Override
     public void displayMenu() {
-
         System.out.println("Welcome to Westminister SHoping Manager\n" +
                 "1.Add a new product.\n" +
                 "2.Delete a product.\n" +
@@ -137,7 +136,6 @@ public class WestministerShoppingManager implements ShopingManager{
             System.out.println("No products for delete!");
         }
     }
-
     @Override
     public void saveInAFile() {
         try{
@@ -145,12 +143,10 @@ public class WestministerShoppingManager implements ShopingManager{
             ObjectOutputStream obj = new ObjectOutputStream(data);
             obj.writeObject(productList);
             obj.close();
-
         } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-
     }
 
     @Override

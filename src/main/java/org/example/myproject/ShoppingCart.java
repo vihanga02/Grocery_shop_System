@@ -1,6 +1,7 @@
 package org.example.myproject;
 
 import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,8 +12,7 @@ public class ShoppingCart {
     public Map<Product ,Integer> productMap;
     public List<Product> productList;
     private static ShoppingCart instance;
-    public Scene scene1, scene2, scene3;
-
+    public static Stage workingStage;
     public ShoppingCart() {
         this.productMap = new HashMap<>();
         this.productList = new ArrayList<>();
@@ -29,11 +29,16 @@ public class ShoppingCart {
     }
 
     public void remove(Product product){
-        if (productMap.get(product) == 0){
+        if (productMap.get(product) == 1){
             productList.remove(product);
             productMap.remove(product);
         }
-
+        else if (productMap.get(product) != null){
+            productMap.put(product, productMap.get(product) - 1);
+        }
+        else{
+            System.out.println("mull");
+        }
 
     }
 

@@ -37,7 +37,7 @@
          </font>
       </Label>
       <Button fx:id="backToSlection" layoutX="235.0" layoutY="545.0" mnemonicParsing="false" onAction="#backToShop" prefHeight="24.0" prefWidth="153.0" text="Select More Items" />
-      <Button layoutX="460.0" layoutY="545.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="66.0" text="Buy" />
+      <Button fx:id="quit" layoutX="460.0" layoutY="545.0" mnemonicParsing="false" onAction="#quitToExit" prefHeight="24.0" prefWidth="66.0" text="Buy" />
       <Button layoutX="720.0" layoutY="161.0" mnemonicParsing="false" onAction="#removeASelected" prefHeight="24.0" prefWidth="82.0" rotate="90.0" text="Remove" />
    </children>
 </AnchorPane>

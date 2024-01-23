@@ -28,6 +28,7 @@ public class Scene2Controller extends ShoppingCart implements Initializable {
 
     List<Product> productList;
     WestministerShoppingManager manager;
+    Stage stage;
 
     List<Product> newProductList = new ArrayList<>();
     @FXML
@@ -102,12 +103,11 @@ public class Scene2Controller extends ShoppingCart implements Initializable {
         String category = myChoiceBox.getValue();
         newProductList.clear();
         if (category.equals("Electronics")){
-            for (Product product: productList){
-                if (product instanceof Electronics){
+            for (Product product: productList) {
+                if (product instanceof Electronics) {
                     newProductList.add(product);
                 }
             }
-            System.out.println("el");
         }
         else if(category.equals("Clothings")){
             for (Product product: productList) {
@@ -115,19 +115,18 @@ public class Scene2Controller extends ShoppingCart implements Initializable {
                     newProductList.add(product);
                 }
             }
-            System.out.println("cl");
         }
         else{
             newProductList = productList;
-            System.out.println("all");
         }
         observableProductList.setAll(newProductList);
     }
 
     public void switchingToScene3(ActionEvent event) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("Gui2.fxml"));
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
+        super.workingStage = stage;
         stage.show();
     }
 

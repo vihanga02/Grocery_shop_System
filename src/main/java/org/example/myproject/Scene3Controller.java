@@ -10,9 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -38,8 +36,19 @@ public class Scene3Controller extends ShoppingCart implements Initializable{
     private Button backToSelection;
     @FXML
     private Button quit;
+    @FXML
+    private Label totalLabel;
+    @FXML
+    private Label PPDLabel;
+    @FXML
+    private Label TIISCDLabel;
+    @FXML
+    private Label FinalTotalLabel;
+    Stage stage;
+    private int electronicCount;
+    private int clothingCount;
 
-    private final ObservableList<Map.Entry<Product, Integer>> observableMap;
+    private ObservableList<Map.Entry<Product, Integer>> observableMap;
     ShoppingCart cart = ShoppingCart.getInstance();
 
     public Scene3Controller(){
@@ -51,9 +60,11 @@ public class Scene3Controller extends ShoppingCart implements Initializable{
         productColumn.setCellValueFactory(cellData -> {
             Product selected = cellData.getValue().getKey();
             if (selected instanceof Electronics){
+                electronicCount += 1;
                 return new SimpleStringProperty(selected.getProductName() + "\nElectronics\n" + ((Electronics) selected).getBrandName() + ", " + ((Electronics) selected).getWarrantyPeriod());
             }
             else{
+                clothingCount += 1;
                 return new SimpleStringProperty(selected.getProductName() + "\nClothing\n" + ((Clothing) selected).getSize() + ", " + ((Clothing) selected).getColor());
             }
         });
@@ -65,22 +76,45 @@ public class Scene3Controller extends ShoppingCart implements Initializable{
             Double onePrice = cellData.getValue().getKey().getPrice();
             int quantity = cellData.getValue().getValue();
             Double totalPrice = onePrice*quantity;
-            System.out.println(quantity);
             return new SimpleStringProperty(Double.toString(totalPrice));
         });
-
         tableView.setItems(observableMap);
     }
 
     public void backToShop(ActionEvent event)throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("Gui1.fxml"));
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
+        workingStage = stage;
         stage.show();
     }
 
     public void removeASelected(ActionEvent event) throws Exception{
         Product selected = tableView.getSelectionModel().getSelectedItem().getKey();
         cart.remove(selected);
+        observableMap.clear();
+        observableMap.setAll(cart.productMap.entrySet());
+    }
+
+    public void quitToExit(ActionEvent event) throws Exception{
+        if (workingStage != null) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Quit Alert");
+            alert.setHeaderText(null);
+            alert.setContentText("Are you sure, do you want to quit?");
+            alert.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    super.workingStage.close();
+                }
+            });
+        }
+    }
+
+    public void displayTotale(){
+        Double cost = cart.totalCost();
+        totalLabel.setText(Double.toString(cost));
+        if ((clothingCount > 3) || (electronicCount > 3)){
+            TIISCDLabel.setText("-" + Double.toString(cost*0.2));
+        }
     }
 }
