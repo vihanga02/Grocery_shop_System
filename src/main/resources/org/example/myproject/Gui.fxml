@@ -21,6 +21,11 @@
       <TextField fx:id="userNameField" layoutX="181.0" layoutY="71.0" />
       <TextField fx:id="passwordField" layoutX="181.0" layoutY="127.0" />
       <Button fx:id="loginButton" layoutX="237.0" layoutY="188.0" mnemonicParsing="false" onAction="#login" text="Login" />
-      <Button fx:id="SingUpButton" layoutX="109.0" layoutY="188.0" mnemonicParsing="false" onAction="#login" text="SignUp" />
+      <Button fx:id="SingUpButton" layoutX="109.0" layoutY="188.0" mnemonicParsing="false" onAction="#singUp" text="SignUp" />
+      <Label fx:id="msgLabel" alignment="CENTER" layoutX="39.0" layoutY="13.0" prefHeight="40.0" prefWidth="326.0" text="Enter Your Details">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

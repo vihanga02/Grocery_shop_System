@@ -39,5 +39,13 @@
       <Button fx:id="backToSlection" layoutX="235.0" layoutY="545.0" mnemonicParsing="false" onAction="#backToShop" prefHeight="24.0" prefWidth="153.0" text="Select More Items" />
       <Button fx:id="quit" layoutX="460.0" layoutY="545.0" mnemonicParsing="false" onAction="#quitToExit" prefHeight="24.0" prefWidth="66.0" text="Buy" />
       <Button layoutX="720.0" layoutY="161.0" mnemonicParsing="false" onAction="#removeASelected" prefHeight="24.0" prefWidth="82.0" rotate="90.0" text="Remove" />
+      <Label fx:id="totalLabel" layoutX="529.0" layoutY="358.0" prefHeight="16.0" prefWidth="113.0" text="Label" />
+      <Label fx:id="PPDLabel" layoutX="527.0" layoutY="398.0" prefHeight="16.0" prefWidth="113.0" text="Label" />
+      <Label fx:id="TIISCDLabel" layoutX="527.0" layoutY="438.0" prefHeight="16.0" prefWidth="113.0" text="Label" />
+      <Label fx:id="FinalTotalLabel" layoutX="527.0" layoutY="480.0" prefHeight="16.0" prefWidth="113.0" text="Label">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

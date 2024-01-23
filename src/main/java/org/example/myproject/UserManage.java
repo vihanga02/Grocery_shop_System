@@ -1,21 +1,20 @@
 package org.example.myproject;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class UserManage implements Serializable {
-    private List<User> userList;
-    Scanner scanner = new Scanner(System.in);
-
+    private List<User> userList = new ArrayList<>();
     public UserManage() {
-
+        this.loadFile();
     }
 
     public List<User> getUserList(){
         return userList;
     }
-    public void loadUsers(){
+    public void saveUserList(){
         try{
             FileOutputStream data = new FileOutputStream("Data2.ser");
             ObjectOutputStream obj = new ObjectOutputStream(data);
@@ -39,10 +38,9 @@ public class UserManage implements Serializable {
         return userList;
     }
 
-    public void addUser(){
-        String name,password;
-        name = scanner.next();
-        password = scanner.next();
-        userList.add(new User(name, password));
+    public void setUserList(User user){
+        this.userList.add(user);
+        this.saveUserList();
+        this.loadFile();
     }
 }

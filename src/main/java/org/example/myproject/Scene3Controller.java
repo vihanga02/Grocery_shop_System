@@ -110,11 +110,37 @@ public class Scene3Controller extends ShoppingCart implements Initializable{
         }
     }
 
-    public void displayTotale(){
+    public void displayTotale() throws Exception{
         Double cost = cart.totalCost();
+        boolean flag1 = true;
+        boolean flag2 = true;
+        int count = ShoppingCart.getCurrentUser().getBuysCount();
+
         totalLabel.setText(Double.toString(cost));
         if ((clothingCount > 3) || (electronicCount > 3)){
-            TIISCDLabel.setText("-" + Double.toString(cost*0.2));
+            TIISCDLabel.setText("-" + cost*0.2);
+            flag1 = false;
         }
+        else {
+            TIISCDLabel.setText("0.00");
+        }
+
+        if (count == 0){
+            PPDLabel.setText("-" + cost*0.1);
+            flag2 = false;
+        }
+
+        if (flag1 && flag2){
+            FinalTotalLabel.setText(Double.toString(cost*0.7));
+        }
+        else if(flag1 && !flag2){
+            FinalTotalLabel.setText(Double.toString(cost*0.8));
+        } else if (!flag1 && flag2) {
+            FinalTotalLabel.setText(Double.toString(cost*0.9));
+        }
+        else {
+            FinalTotalLabel.setText(Double.toString(cost));
+        }
+
     }
 }

@@ -12,6 +12,7 @@ public class ShoppingCart {
     public Map<Product ,Integer> productMap;
     public List<Product> productList;
     private static ShoppingCart instance;
+    private static User currentUser;
     public static Stage workingStage;
     public ShoppingCart() {
         this.productMap = new HashMap<>();
@@ -47,6 +48,9 @@ public class ShoppingCart {
             instance = new ShoppingCart();
         }
         return instance;
+    }
+    public static User getCurrentUser(){
+        return currentUser;
     }
 
     public double totalCost(){
