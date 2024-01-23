@@ -5,14 +5,16 @@ import java.util.List;
 import java.util.Scanner;
 
 public class UserManage implements Serializable {
-    List<User> userList;
+    private List<User> userList;
     Scanner scanner = new Scanner(System.in);
 
     public UserManage() {
 
     }
 
-
+    public List<User> getUserList(){
+        return userList;
+    }
     public void loadUsers(){
         try{
             FileOutputStream data = new FileOutputStream("Data2.ser");

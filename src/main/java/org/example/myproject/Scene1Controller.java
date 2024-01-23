@@ -45,6 +45,8 @@ public class Scene1Controller extends ShoppingCart{
     public void singUp(){
         userName = userNameField.getText();
         password = passwordField.getText();
+        for (User user:userManage.getUserList()){
 
+        }
     }
 }
