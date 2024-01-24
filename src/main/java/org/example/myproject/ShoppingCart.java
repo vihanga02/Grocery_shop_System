@@ -21,6 +21,7 @@ public class ShoppingCart {
 
     public void add(Product product){
         if (productMap.containsKey(product)){
+            product.setNumberOfProducts(-1);
             productMap.put(product,productMap.get(product)+1);
         }
         else{
@@ -33,14 +34,12 @@ public class ShoppingCart {
         if (productMap.get(product) == 1){
             productList.remove(product);
             productMap.remove(product);
+            product.setNumberOfProducts(1);
         }
         else if (productMap.get(product) != null){
             productMap.put(product, productMap.get(product) - 1);
+            product.setNumberOfProducts(1);
         }
-        else{
-            System.out.println("mull");
-        }
-
     }
 
     public static ShoppingCart getInstance() {
@@ -51,6 +50,9 @@ public class ShoppingCart {
     }
     public static User getCurrentUser(){
         return currentUser;
+    }
+    public static void setCurrentUser(User user){
+        currentUser = user;
     }
 
     public double totalCost(){

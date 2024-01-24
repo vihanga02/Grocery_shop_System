@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.myproject.Scene3Controller">
+<AnchorPane onInputMethodTextChanged="#displayTotal" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.myproject.Scene3Controller">
    <children>
       <TableView fx:id="tableView" layoutX="28.0" layoutY="31.0" onSort="#backToShop" prefHeight="284.0" prefWidth="689.0">
         <columns>
@@ -39,10 +39,10 @@
       <Button fx:id="backToSlection" layoutX="235.0" layoutY="545.0" mnemonicParsing="false" onAction="#backToShop" prefHeight="24.0" prefWidth="153.0" text="Select More Items" />
       <Button fx:id="quit" layoutX="460.0" layoutY="545.0" mnemonicParsing="false" onAction="#quitToExit" prefHeight="24.0" prefWidth="66.0" text="Buy" />
       <Button layoutX="720.0" layoutY="161.0" mnemonicParsing="false" onAction="#removeASelected" prefHeight="24.0" prefWidth="82.0" rotate="90.0" text="Remove" />
-      <Label fx:id="totalLabel" layoutX="529.0" layoutY="358.0" prefHeight="16.0" prefWidth="113.0" text="Label" />
-      <Label fx:id="PPDLabel" layoutX="527.0" layoutY="398.0" prefHeight="16.0" prefWidth="113.0" text="Label" />
-      <Label fx:id="TIISCDLabel" layoutX="527.0" layoutY="438.0" prefHeight="16.0" prefWidth="113.0" text="Label" />
-      <Label fx:id="FinalTotalLabel" layoutX="527.0" layoutY="480.0" prefHeight="16.0" prefWidth="113.0" text="Label">
+      <Label fx:id="totalLabel" layoutX="529.0" layoutY="358.0" prefHeight="16.0" prefWidth="113.0" text="0.00" />
+      <Label fx:id="PPDLabel" layoutX="527.0" layoutY="398.0" prefHeight="16.0" prefWidth="113.0" text="0.00" />
+      <Label fx:id="TIISCDLabel" layoutX="527.0" layoutY="438.0" prefHeight="16.0" prefWidth="113.0" text="0.00" />
+      <Label fx:id="FinalTotalLabel" layoutX="524.0" layoutY="480.0" prefHeight="16.0" prefWidth="113.0" text="0.00">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>

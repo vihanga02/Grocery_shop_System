@@ -134,22 +134,21 @@ public class Scene2Controller extends ShoppingCart implements Initializable {
     public void displaySelected() throws Exception{
         Product selectedProduct = tableView.getSelectionModel().getSelectedItem();
         if (selectedProduct != null){
-            idLabel.setText("Product ID: " + selectedProduct.getId());
-            catLabel.setText("Category: " + selectedProduct.getClass().getName());
-            nameLabel.setText("Name: " + selectedProduct.getProductName());
-            itemCountLabel.setText("Items Available: " + selectedProduct.getNumberOfProducts());
+            idLabel.setText(selectedProduct.getId());
+            catLabel.setText(selectedProduct.getClass().getName());
+            nameLabel.setText(selectedProduct.getProductName());
+            itemCountLabel.setText(Integer.toString(selectedProduct.getNumberOfProducts()));
             if (selectedProduct instanceof Electronics) {
-                infoLabel.setText("Brand: " + ((Electronics) selectedProduct).getBrandName());
-                infoLabel1.setText("Warranty Period: " + ((Electronics) selectedProduct).getWarrantyPeriod());
+                infoLabel.setText(((Electronics) selectedProduct).getBrandName());
+                infoLabel1.setText(Integer.toString(((Electronics) selectedProduct).getWarrantyPeriod()));
             }
             else {
-                infoLabel.setText("Color: " + ((Clothing) selectedProduct).getColor());
-                infoLabel1.setText("Size: " + ((Clothing) selectedProduct).getSize());
+                infoLabel.setText(((Clothing) selectedProduct).getColor());
+                infoLabel1.setText(Double.toString(((Clothing) selectedProduct).getSize()));
             }
         }
         selectedObject = selectedProduct;
     }
-
     public void addToCart(ActionEvent event)throws Exception{
         ShoppingCart cart = ShoppingCart.getInstance();
         cart.add(selectedObject);

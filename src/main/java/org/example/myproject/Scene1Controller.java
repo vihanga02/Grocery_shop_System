@@ -38,8 +38,8 @@ public class Scene1Controller extends ShoppingCart{
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(new Scene(root));
                 stage.show();
-                User curCuser = ShoppingCart.getCurrentUser();
-                curCuser = user;
+                ShoppingCart.setCurrentUser(user);
+                System.out.println(ShoppingCart.getCurrentUser().getBuysCount());
                 flag = false;
                 break;
             }
@@ -64,10 +64,10 @@ public class Scene1Controller extends ShoppingCart{
         }
         if (flag){
             userManage.setUserList(new User(userName,password));
+            ShoppingCart.setCurrentUser(new User(userName,password));
             Parent root = FXMLLoader.load(getClass().getResource("Gui1.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
-
             stage.show();
         }
     }

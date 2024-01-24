@@ -42,32 +42,62 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="idLabel" layoutX="73.0" layoutY="511.0" text="Product ID:">
+      <Label fx:id="idLabel" layoutX="189.0" layoutY="511.0" text="not selected">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="catLabel" layoutX="82.0" layoutY="550.0" text="Category:">
+      <Label fx:id="catLabel1" layoutX="82.0" layoutY="550.0" text="Category:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="nameLabel" layoutX="104.0" layoutY="586.0" text="Name:">
+      <Label fx:id="nameLabel1" layoutX="104.0" layoutY="586.0" text="Name:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="itemCountLabel" layoutX="42.0" layoutY="622.0" text="Items available:">
+      <Label fx:id="itemCountLabel1" layoutX="42.0" layoutY="622.0" text="Items available:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="infoLabel" layoutX="114.0" layoutY="660.0" text="Info1:">
+      <Label fx:id="infoLabel12" layoutX="114.0" layoutY="660.0" text="Info1:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="infoLabel1" layoutX="111.0" layoutY="695.0" text="Info2:">
+      <Label fx:id="infoLabel11" layoutX="111.0" layoutY="695.0" text="Info2:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="idLabel1" layoutX="73.0" layoutY="511.0" text="Product ID:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="catLabel" layoutX="188.0" layoutY="550.0" text="not selected">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="nameLabel" layoutX="189.0" layoutY="586.0" text="not selected">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="itemCountLabel" layoutX="189.0" layoutY="622.0" text="not selected">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="infoLabel" layoutX="188.0" layoutY="660.0" text="not selected">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="infoLabel1" layoutX="188.0" layoutY="695.0" text="not selected">
          <font>
             <Font size="14.0" />
          </font>

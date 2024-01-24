@@ -14,6 +14,7 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.time.Period;
 import java.util.List;
 import java.util.Map;
@@ -45,13 +46,13 @@ public class Scene3Controller extends ShoppingCart implements Initializable{
     @FXML
     private Label FinalTotalLabel;
     Stage stage;
-    private int electronicCount;
-    private int clothingCount;
+    private int electronicCount = 0;
+    private int clothingCount = 0;
 
     private ObservableList<Map.Entry<Product, Integer>> observableMap;
     ShoppingCart cart = ShoppingCart.getInstance();
 
-    public Scene3Controller(){
+    public Scene3Controller() {
         super();
         this.observableMap = FXCollections.observableArrayList(cart.productMap.entrySet());
     }
@@ -60,11 +61,9 @@ public class Scene3Controller extends ShoppingCart implements Initializable{
         productColumn.setCellValueFactory(cellData -> {
             Product selected = cellData.getValue().getKey();
             if (selected instanceof Electronics){
-                electronicCount += 1;
                 return new SimpleStringProperty(selected.getProductName() + "\nElectronics\n" + ((Electronics) selected).getBrandName() + ", " + ((Electronics) selected).getWarrantyPeriod());
             }
             else{
-                clothingCount += 1;
                 return new SimpleStringProperty(selected.getProductName() + "\nClothing\n" + ((Clothing) selected).getSize() + ", " + ((Clothing) selected).getColor());
             }
         });
@@ -79,6 +78,20 @@ public class Scene3Controller extends ShoppingCart implements Initializable{
             return new SimpleStringProperty(Double.toString(totalPrice));
         });
         tableView.setItems(observableMap);
+        displayTotal();
+        updateCategoryCount();
+    }
+
+    public void updateCategoryCount(){
+        for (Map.Entry<Product, Integer> entry : cart.productMap.entrySet()) {
+            if (entry.getKey() instanceof Electronics){
+                electronicCount += entry.getValue();
+            }
+            else{
+                clothingCount += entry.getValue();
+            }
+        }
+        System.out.println(clothingCount + " " + electronicCount);
     }
 
     public void backToShop(ActionEvent event)throws Exception{
@@ -105,13 +118,14 @@ public class Scene3Controller extends ShoppingCart implements Initializable{
             alert.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
                     super.workingStage.close();
+                    ShoppingCart.getCurrentUser().setBuysCount();
                 }
             });
         }
     }
-
-    public void displayTotale() throws Exception{
+    public void displayTotal(){
         Double cost = cart.totalCost();
+        DecimalFormat df = new DecimalFormat("#.###");
         boolean flag1 = true;
         boolean flag2 = true;
         int count = ShoppingCart.getCurrentUser().getBuysCount();
@@ -135,12 +149,11 @@ public class Scene3Controller extends ShoppingCart implements Initializable{
         }
         else if(flag1 && !flag2){
             FinalTotalLabel.setText(Double.toString(cost*0.8));
-        } else if (!flag1 && flag2) {
+        } else if (!flag1 && flag2){
             FinalTotalLabel.setText(Double.toString(cost*0.9));
         }
         else {
             FinalTotalLabel.setText(Double.toString(cost));
         }
-
     }
 }
