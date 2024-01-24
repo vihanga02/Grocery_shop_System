@@ -59,6 +59,7 @@ public class Scene2Controller extends ShoppingCart implements Initializable {
     @FXML
     private TableColumn<Product, String> info;
     ObservableList<Product> observableProductList;
+    Product selectedProduct, selectedProduct1;
 
     public Scene2Controller() {
         this.manager = new WestministerShoppingManager();
@@ -129,10 +130,17 @@ public class Scene2Controller extends ShoppingCart implements Initializable {
         super.workingStage = stage;
         stage.show();
     }
-
-    private Product selectedObject;
+    boolean flag = true;
     public void displaySelected() throws Exception{
-        Product selectedProduct = tableView.getSelectionModel().getSelectedItem();
+        if (flag) {
+            selectedProduct = tableView.getSelectionModel().getSelectedItem();
+            selectedProduct1 = selectedProduct;
+            flag = false;
+        }
+        else{
+            selectedProduct = selectedProduct1;
+            flag = true;
+        }
         if (selectedProduct != null){
             idLabel.setText(selectedProduct.getId());
             catLabel.setText(selectedProduct.getClass().getName());
@@ -147,10 +155,16 @@ public class Scene2Controller extends ShoppingCart implements Initializable {
                 infoLabel1.setText("Size: " + ((Clothing) selectedProduct).getSize());
             }
         }
-        selectedObject = selectedProduct;
     }
     public void addToCart(ActionEvent event)throws Exception{
         ShoppingCart cart = ShoppingCart.getInstance();
-        cart.add(selectedObject);
+        cart.add(selectedProduct);
+        selectedProduct.setNumberOfProducts(-1);
+        productList.set(productList.indexOf(selectedProduct), selectedProduct);
+        //manager.saveInAFile(productList);
+        //productList = manager.loadFile();
+        observableProductList.clear();
+        observableProductList.setAll(productList);
+        displaySelected();
     }
 }

@@ -87,7 +87,6 @@ public class Scene3Controller extends ShoppingCart implements Initializable{
                 clothingCount += entry.getValue();
             }
         }
-        System.out.println(clothingCount + " " + electronicCount);
     }
 
     public void backToShop(ActionEvent event)throws Exception{

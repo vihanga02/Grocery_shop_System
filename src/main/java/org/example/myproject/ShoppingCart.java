@@ -21,7 +21,6 @@ public class ShoppingCart {
 
     public void add(Product product){
         if (productMap.containsKey(product)){
-            product.setNumberOfProducts(-1);
             productMap.put(product,productMap.get(product)+1);
         }
         else{
@@ -29,16 +28,13 @@ public class ShoppingCart {
             productList.add(product);
         }
     }
-
     public void remove(Product product){
         if (productMap.get(product) == 1){
             productList.remove(product);
             productMap.remove(product);
-            product.setNumberOfProducts(1);
         }
         else if (productMap.get(product) != null){
             productMap.put(product, productMap.get(product) - 1);
-            product.setNumberOfProducts(1);
         }
     }
 

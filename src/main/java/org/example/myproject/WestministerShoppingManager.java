@@ -150,6 +150,17 @@ public class WestministerShoppingManager implements ShopingManager{
             e.printStackTrace();
         }
     }
+    public void saveInAFile(List<Product> productList1) {
+        try{
+            FileOutputStream data = new FileOutputStream("Data1.ser");
+            ObjectOutputStream obj = new ObjectOutputStream(data);
+            obj.writeObject(productList1);
+            obj.close();
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public void printTheProductList() {
@@ -171,7 +182,8 @@ public class WestministerShoppingManager implements ShopingManager{
                 if (id.equals(product.getId())){
                     System.out.print("Product ID: " + product.getId() +
                             "    Product name: " + product.getProductName() +
-                            "     Price: Rs." + product.getPrice());
+                            "    Price: Rs." + product.getPrice() +
+                            "    No of Products: " + product.getNumberOfProducts());
                     if (product instanceof Electronics) {
                         System.out.print("    Product Type: Electronics    Brand; " + ((Electronics) product).getBrandName() +
                                 "    Warranty Period: " + ((Electronics) product).getWarrantyPeriod());
