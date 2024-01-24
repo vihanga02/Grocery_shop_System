@@ -161,8 +161,6 @@ public class Scene2Controller extends ShoppingCart implements Initializable {
         cart.add(selectedProduct);
         selectedProduct.setNumberOfProducts(-1);
         productList.set(productList.indexOf(selectedProduct), selectedProduct);
-        //manager.saveInAFile(productList);
-        //productList = manager.loadFile();
         observableProductList.clear();
         observableProductList.setAll(productList);
         displaySelected();
