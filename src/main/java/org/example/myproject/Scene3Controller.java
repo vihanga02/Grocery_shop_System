@@ -21,16 +21,12 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 public class Scene3Controller extends ShoppingCart implements Initializable{
-
     @FXML
     private TableColumn<Map.Entry<Product, Integer>, String> priceColumn;
-
     @FXML
     private TableColumn<Map.Entry<Product, Integer>, String> productColumn;
-
     @FXML
     private TableColumn<Map.Entry<Product, Integer>, Integer> quantityColumn;
-
     @FXML
     private TableView<Map.Entry<Product, Integer>> tableView;
     @FXML
@@ -46,8 +42,8 @@ public class Scene3Controller extends ShoppingCart implements Initializable{
     @FXML
     private Label FinalTotalLabel;
     Stage stage;
-    private int electronicCount = 0;
-    private int clothingCount = 0;
+    private int electronicCount;
+    private int clothingCount;
 
     private ObservableList<Map.Entry<Product, Integer>> observableMap;
     ShoppingCart cart = ShoppingCart.getInstance();
@@ -78,8 +74,8 @@ public class Scene3Controller extends ShoppingCart implements Initializable{
             return new SimpleStringProperty(Double.toString(totalPrice));
         });
         tableView.setItems(observableMap);
-        displayTotal();
         updateCategoryCount();
+        displayTotal();
     }
 
     public void updateCategoryCount(){
@@ -129,7 +125,6 @@ public class Scene3Controller extends ShoppingCart implements Initializable{
         boolean flag1 = true;
         boolean flag2 = true;
         int count = ShoppingCart.getCurrentUser().getBuysCount();
-
         totalLabel.setText(Double.toString(cost));
         if ((clothingCount > 3) || (electronicCount > 3)){
             TIISCDLabel.setText("-" + cost*0.2);

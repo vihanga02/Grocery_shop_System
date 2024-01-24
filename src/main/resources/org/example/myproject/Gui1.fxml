@@ -62,12 +62,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="infoLabel12" layoutX="114.0" layoutY="660.0" text="Info1:">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label fx:id="infoLabel11" layoutX="111.0" layoutY="695.0" text="Info2:">
+      <Label fx:id="infoLabel12" layoutX="114.0" layoutY="660.0" text="Info:">
          <font>
             <Font size="14.0" />
          </font>

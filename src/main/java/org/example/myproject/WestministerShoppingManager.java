@@ -21,7 +21,6 @@ public class WestministerShoppingManager implements ShopingManager{
                 "2.Delete a product.\n" +
                 "3.Print the list of product.\n" +
                 "4.Save a file.\n" +
-                "5.Exit.\n" +
                 "Enter a option: ");
 
         int choice = scanner.nextInt();
@@ -39,6 +38,9 @@ public class WestministerShoppingManager implements ShopingManager{
             case 4:
                 saveInAFile();
                 break;
+            default:
+                System.out.println("Enter a number!!");
+                displayMenu();
         }
     }
 
@@ -94,7 +96,7 @@ public class WestministerShoppingManager implements ShopingManager{
                     String color = scanner.next();
 
                     System.out.println("Enter the size: ");
-                    int size = scanner.nextInt();
+                    String size = scanner.next();
 
                     productList.add(new Clothing(id, name, itemCount, price, color, size));
                     System.out.println("Successfully added.");
@@ -112,7 +114,7 @@ public class WestministerShoppingManager implements ShopingManager{
     @Override
     public void deleteProduct() {
         if (productList.size() > 0) {
-            System.out.println("Enter the ID of the deleting element");
+            System.out.println("Enter the ID of the deleting element.");
             String idToDelete = scanner.next();
 
             int flag = 0;
@@ -122,13 +124,13 @@ public class WestministerShoppingManager implements ShopingManager{
                     productList.remove(product);
                     product.setNumberOfProducts(-1);
                     flag = 1;
-                    System.out.println("Item Deleted");
+                    System.out.println("Item Deleted.");
                     break;
                 }
             }
 
             if (flag == 0) {
-                System.out.println("Enter a valid ID number");
+                System.out.println("Enter a valid ID number!!");
                 deleteProduct();
             }
         }
@@ -191,9 +193,6 @@ public class WestministerShoppingManager implements ShopingManager{
 
     @Override
     public List<Product> loadFile() {
-//        productList.add(new Electronics("abc", "MacbookAir", 2, 102, "Apple", 12));
-//        productList.add(new Clothing("xyz", "MacbookAir", 1, 102, "red", 1));
-
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("Data1.ser"))){
             List<Product> pr = (List<Product>) in.readObject();
             productList = pr;

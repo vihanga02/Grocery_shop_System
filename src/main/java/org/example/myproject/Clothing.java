@@ -4,8 +4,8 @@ import java.io.Serializable;
 
 public class Clothing extends Product implements Serializable {
     private String color;
-    private double size;
-    public Clothing(String id, String name, int nOp, double price, String colour, double size){
+    private String size;
+    public Clothing(String id, String name, int nOp, double price, String colour, String size){
         super(id, name, nOp, price);
         this.color = colour;
         this.size = size;
@@ -15,7 +15,7 @@ public class Clothing extends Product implements Serializable {
         return color;
     }
 
-    public double getSize(){
+    public String getSize(){
         return size;
     }
 
@@ -23,7 +23,7 @@ public class Clothing extends Product implements Serializable {
         this.color = color;
     }
 
-    public void setSize(double size){
+    public void setSize(String size){
         this.size = size;
     }
 }

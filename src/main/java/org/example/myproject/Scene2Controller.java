@@ -139,12 +139,12 @@ public class Scene2Controller extends ShoppingCart implements Initializable {
             nameLabel.setText(selectedProduct.getProductName());
             itemCountLabel.setText(Integer.toString(selectedProduct.getNumberOfProducts()));
             if (selectedProduct instanceof Electronics) {
-                infoLabel.setText(((Electronics) selectedProduct).getBrandName());
-                infoLabel1.setText(Integer.toString(((Electronics) selectedProduct).getWarrantyPeriod()));
+                infoLabel.setText("Brand: " + ((Electronics) selectedProduct).getBrandName());
+                infoLabel1.setText("Warrant Period: " + ((Electronics) selectedProduct).getWarrantyPeriod());
             }
             else {
-                infoLabel.setText(((Clothing) selectedProduct).getColor());
-                infoLabel1.setText(Double.toString(((Clothing) selectedProduct).getSize()));
+                infoLabel.setText("Color: " + ((Clothing) selectedProduct).getColor());
+                infoLabel1.setText("Size: " + ((Clothing) selectedProduct).getSize());
             }
         }
         selectedObject = selectedProduct;
