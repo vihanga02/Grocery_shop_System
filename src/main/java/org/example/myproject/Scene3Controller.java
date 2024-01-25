@@ -47,6 +47,7 @@ public class Scene3Controller extends ShoppingCart implements Initializable{
 
     private ObservableList<Map.Entry<Product, Integer>> observableMap;
     ShoppingCart cart = ShoppingCart.getInstance();
+    WestministerShoppingManager manager = new WestministerShoppingManager();
 
     public Scene3Controller() {
         super();
@@ -100,6 +101,10 @@ public class Scene3Controller extends ShoppingCart implements Initializable{
     public void removeASelected(ActionEvent event) throws Exception{
         Product selected = tableView.getSelectionModel().getSelectedItem().getKey();
         cart.remove(selected);
+        selected.setNumberOfProducts(1);
+        List<Product> tempList = cart.getUpdatedProductList();
+        tempList.set(tempList.indexOf(selected), selected);
+        cart.setUpdatedList(tempList);
         observableMap.clear();
         observableMap.setAll(cart.productMap.entrySet());
     }
@@ -114,6 +119,7 @@ public class Scene3Controller extends ShoppingCart implements Initializable{
                 if (response == ButtonType.OK) {
                     super.workingStage.close();
                     ShoppingCart.getCurrentUser().setBuysCount();
+                    manager.saveInAFile(cart.getUpdatedProductList());
                 }
             });
         }
