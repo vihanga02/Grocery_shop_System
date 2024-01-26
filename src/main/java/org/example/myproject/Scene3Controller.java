@@ -30,10 +30,6 @@ public class Scene3Controller extends ShoppingCart implements Initializable{
     @FXML
     private TableView<Map.Entry<Product, Integer>> tableView;
     @FXML
-    private Button backToSelection;
-    @FXML
-    private Button quit;
-    @FXML
     private Label totalLabel;
     @FXML
     private Label PPDLabel;

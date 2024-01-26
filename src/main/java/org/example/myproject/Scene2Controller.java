@@ -21,13 +21,12 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class Scene2Controller extends ShoppingCart implements Initializable {
-    private String[] categories = {"All", "Electronics", "Clothings"};
+    private final String[] categories = {"All", "Electronics", "Clothings"};
 
     @FXML
     private ChoiceBox<String> myChoiceBox;
 
-    List<Product> productList;
-    WestministerShoppingManager manager;
+    //List<Product> productList = new ArrayList<>();
     Stage stage;
 
     List<Product> newProductList = new ArrayList<>();
@@ -62,10 +61,10 @@ public class Scene2Controller extends ShoppingCart implements Initializable {
     Product selectedProduct, selectedProduct1;
 
     public Scene2Controller() {
-        this.manager = new WestministerShoppingManager();
-        this.productList = manager.loadFile();
-        setUpdatedList(productList);
-        this.observableProductList = FXCollections.observableArrayList(productList);
+        WestministerShoppingManager manager = new WestministerShoppingManager();
+        //this.productList = manager.loadFile();
+        //setUpdatedList(productList);
+        this.observableProductList = FXCollections.observableArrayList(ShoppingCart.getInstance().getUpdatedProductList());
     }
 
     @Override
@@ -90,8 +89,7 @@ public class Scene2Controller extends ShoppingCart implements Initializable {
 
         info.setCellValueFactory(cellData -> {
             Product product = cellData.getValue();
-            if (product instanceof Electronics) {
-                Electronics electronicsProduct = (Electronics) product;
+            if (product instanceof Electronics electronicsProduct) {
                 return new ReadOnlyStringWrapper("Brand: " + electronicsProduct.getBrandName() + ", Warranty: " + electronicsProduct.getWarrantyPeriod());
             }
             else {
@@ -105,21 +103,21 @@ public class Scene2Controller extends ShoppingCart implements Initializable {
         String category = myChoiceBox.getValue();
         newProductList.clear();
         if (category.equals("Electronics")){
-            for (Product product: productList) {
+            for (Product product: getUpdatedProductList()) {
                 if (product instanceof Electronics) {
                     newProductList.add(product);
                 }
             }
         }
         else if(category.equals("Clothings")){
-            for (Product product: productList) {
+            for (Product product: getUpdatedProductList()) {
                 if(product instanceof Clothing){
                     newProductList.add(product);
                 }
             }
         }
         else{
-            newProductList = productList;
+            newProductList = getUpdatedProductList();
         }
         observableProductList.setAll(newProductList);
     }
@@ -128,7 +126,7 @@ public class Scene2Controller extends ShoppingCart implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("Gui2.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
-        super.workingStage = stage;
+        workingStage = stage;
         stage.show();
     }
     boolean flag = true;
@@ -159,12 +157,15 @@ public class Scene2Controller extends ShoppingCart implements Initializable {
     }
     public void addToCart(ActionEvent event)throws Exception{
         ShoppingCart cart = ShoppingCart.getInstance();
-        cart.add(selectedProduct);
+        List<Product> tempProductList = getUpdatedProductList();
+        int ind = tempProductList.indexOf(selectedProduct);
         selectedProduct.setNumberOfProducts(-1);
-        productList.set(productList.indexOf(selectedProduct), selectedProduct);
-        setUpdatedList(productList);
+        cart.add(selectedProduct);
+
+        tempProductList.set(ind, selectedProduct);
+        setUpdatedList(tempProductList);
         observableProductList.clear();
-        observableProductList.setAll(productList);
+        observableProductList.setAll(getUpdatedProductList());
         displaySelected();
     }
 }
