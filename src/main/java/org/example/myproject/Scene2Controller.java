@@ -156,16 +156,17 @@ public class Scene2Controller extends ShoppingCart implements Initializable {
         }
     }
     public void addToCart(ActionEvent event)throws Exception{
-        ShoppingCart cart = ShoppingCart.getInstance();
-        List<Product> tempProductList = getUpdatedProductList();
-        int ind = tempProductList.indexOf(selectedProduct);
-        selectedProduct.setNumberOfProducts(-1);
-        cart.add(selectedProduct);
-
-        tempProductList.set(ind, selectedProduct);
-        setUpdatedList(tempProductList);
-        observableProductList.clear();
-        observableProductList.setAll(getUpdatedProductList());
-        displaySelected();
+        if (selectedProduct != null){
+            ShoppingCart cart = ShoppingCart.getInstance();
+            List<Product> tempProductList = getUpdatedProductList();
+            int ind = tempProductList.indexOf(selectedProduct);
+            selectedProduct.setNumberOfProducts(-1);
+            cart.add(selectedProduct);
+            tempProductList.set(ind, selectedProduct);
+            setUpdatedList(tempProductList);
+            observableProductList.clear();
+            observableProductList.setAll(getUpdatedProductList());
+            displaySelected();
+        }
     }
 }

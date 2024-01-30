@@ -39,7 +39,7 @@ public class Scene1Controller extends ShoppingCart{
                 stage.setScene(new Scene(root));
                 stage.show();
                 ShoppingCart.setCurrentUser(user);
-                System.out.println(ShoppingCart.getCurrentUser().getBuysCount());
+                workingStage = stage;
                 flag = false;
                 break;
             }

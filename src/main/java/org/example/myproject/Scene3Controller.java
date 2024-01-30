@@ -88,9 +88,10 @@ public class Scene3Controller extends ShoppingCart implements Initializable{
 
     public void backToShop(ActionEvent event)throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("Gui1.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = workingStage;
+        //stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
-        workingStage = stage;
+        //workingStage = stage;
         stage.show();
     }
 
@@ -99,8 +100,10 @@ public class Scene3Controller extends ShoppingCart implements Initializable{
         cart.remove(selected);
         selected.setNumberOfProducts(1);
         List<Product> tempList = cart.getUpdatedProductList();
-        tempList.set(tempList.indexOf(selected), selected);
-        cart.setUpdatedList(tempList);
+        if (tempList.contains(selected)) {
+            tempList.set(tempList.indexOf(selected), selected);
+            cart.setUpdatedList(tempList);
+        }
         observableMap.clear();
         observableMap.setAll(cart.productMap.entrySet());
     }
