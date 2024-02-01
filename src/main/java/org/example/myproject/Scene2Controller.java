@@ -22,11 +22,8 @@ import java.util.ResourceBundle;
 
 public class Scene2Controller extends ShoppingCart implements Initializable {
     private final String[] categories = {"All", "Electronics", "Clothings"};
-
     @FXML
     private ChoiceBox<String> myChoiceBox;
-
-    //List<Product> productList = new ArrayList<>();
     Stage stage;
 
     List<Product> newProductList = new ArrayList<>();
@@ -43,10 +40,8 @@ public class Scene2Controller extends ShoppingCart implements Initializable {
     @FXML
     Label infoLabel1;
 
-
     @FXML
     private TableView<Product> tableView;
-
     @FXML
     private TableColumn<Product, String> id;
     @FXML

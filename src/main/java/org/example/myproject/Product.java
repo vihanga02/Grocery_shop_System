@@ -16,7 +16,6 @@ public class Product implements Serializable {
         this.numberOfProducts = nOp;
         this.price = price;
     }
-
     public Product() {
         this.numberOfProducts++;
     }
@@ -48,9 +47,7 @@ public class Product implements Serializable {
     public void setNumberOfProducts(int newNumberOfProducts){
         this.numberOfProducts = numberOfProducts + newNumberOfProducts;
     }
-
     public void setPrice(double price){
         this.price = price;
     }
-
 }

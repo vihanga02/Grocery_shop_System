@@ -89,9 +89,7 @@ public class Scene3Controller extends ShoppingCart implements Initializable{
     public void backToShop(ActionEvent event)throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("Gui1.fxml"));
         stage = workingStage;
-        //stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
-        //workingStage = stage;
         stage.show();
     }
 
